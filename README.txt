@@ -20,6 +20,9 @@ Cumulative Waiting Time = 1
 
 The simulator contains:
 1) A scheduler thread that checks a request queue(built as a priority queue) for any new requests that come in.
+The scheduler takes a batch (currently = 1) of requests and iterates through a mapping of nodeIDs to resourcesUnits available.
+If a node with sufficient resources is found then the job is allocated else the job is pushed to a pending queue of jobs. 
+At the next iteration the scheduler first scans the pending queue then requests the next set of k jobs from the set of unscheduled jobs.   
 2) Another thread (dispatcherThread) which is a dispatcher thread keeps track of when a job gets over and essentially simulates the job.
 3) Another thread (timeClock) keeps track of the logical time.
 4) A thread (not used in the example) creates a stream of random requests that is then monitored by the scheduler thread.
