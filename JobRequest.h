@@ -21,6 +21,7 @@ public:
 	virtual ~JobRequest();
 	int getFinishTime() { return (time+steps); }
 	int getUnits()  { return units; }
+	int getJobId() { return jobId; }
 };
 
 #endif /* JOBREQUEST_H_ */

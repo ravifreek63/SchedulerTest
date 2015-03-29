@@ -13,10 +13,13 @@
 #include <thread>
 #include <vector>
 #include "Cluster.h"
+#include <iostream>
+using namespace std;
 
 class Scheduler {
 	Cluster *cluster;
 	int k;
+	std::vector<JobRequest> dispatchedRequests;
 	std::vector<JobRequest> pendingJobRequests;
 	std::vector<ResourceUnit> resourceDispatchRequests;
 	int ticks;
@@ -34,6 +37,7 @@ public:
 	void runJobCreator();
 	virtual ~Scheduler();
 	int getLogicalTime() { return ticks; }
+	void createExampleJobs();
 
 };
 

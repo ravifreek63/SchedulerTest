@@ -82,6 +82,8 @@ void Scheduler::runScheduler(){
 				lPendingJobRequests.push_back(curr);
 			} else {
 				// add resource to release thread
+				dispatchedRequests.push_back(curr);
+				cout << "Dispatching request , id = " << curr.getJobId() << endl;
 				resourceDispatchRequests.push_back(ResourceUnit(nodeId, curr.getUnits(), curr.getFinishTime()));
 			}
 		}
@@ -93,6 +95,16 @@ void Scheduler::runScheduler(){
 	}
 }
 
+void Scheduler::createExampleJobs(){
+	int res[] = {7, 7, 7, 7};
+	int steps[] = {7, 1, 1, 7};
+	vector<JobRequest> jobRequest;
+	for(int id=0; id<4; id++){
+		jobRequest.push_back(JobRequest(0, steps[id], id+1, res[id]));
+	}
+	  cluster->pushJobs(jobRequest);
+}
+
 Scheduler::Scheduler(Cluster *c) {
 	cluster = c;
 	k=1; // number of jobs picked by the scheduler at a time
@@ -102,10 +114,11 @@ Scheduler::Scheduler(Cluster *c) {
 	maxSteps = 5;
 	jobsPerSecond = 2;
 
+	createExampleJobs();
 	std::thread timeClock(&Scheduler::runTimeClock, this);
 	std::thread schedulerThread(&Scheduler::runScheduler, this);
 	std::thread dispatcherThread(&Scheduler::runDispatcher, this);
-	std::thread jobCreator(&Scheduler::runJobCreator, this);
+	//std::thread jobCreator(&Scheduler::runJobCreator, this);
 
 	timeClock.join();
 	schedulerThread.join();
