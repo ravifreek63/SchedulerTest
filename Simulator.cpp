@@ -7,6 +7,7 @@
 
 #include "Simulator.h"
 
+int Simulator::totalTime=0;
 
 int toInt(string numStr){
 	stringstream ss;
@@ -34,7 +35,7 @@ void Simulator::readFile(){
 			  count++;
 			  switch(count){
 			  case 1:
-				  totalTime=toInt(line);
+				  Simulator::totalTime=toInt(line);
 				  break;
 			  case 2:
 				  numNodes=toInt(line);
