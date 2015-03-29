@@ -8,6 +8,7 @@
 #include "Simulator.h"
 #include "ResourceUnit.h"
 #include "JobRequest.h"
+#include "Scheduler.h"
 #include "Cluster.h"
 #include <fstream>
 #include <string>
@@ -23,7 +24,7 @@ int toInt(string numStr){
 
 Simulator::Simulator() {
 	readFile();
-	cluster = new Cluster();
+	cluster = new Cluster(numNodes);
 }
 
 Simulator::~Simulator() {
@@ -51,11 +52,11 @@ void Simulator::readFile(){
 }
 
 void Simulator::runSimulation(){
-	Scheduler scheduler = new Scheduler(cluster);
+	Scheduler *scheduler = new Scheduler(cluster);
 }
 
 int main(){
-   Simulator simulator = new Simulator();
-   simulator.runSimulation();
+   Simulator *simulator = new Simulator();
+   simulator->runSimulation();
    return 0;
 }

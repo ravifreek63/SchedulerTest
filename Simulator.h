@@ -13,7 +13,7 @@
 class Simulator {
 	static int totalTime;
 	int numNodes;
-	Cluster cluster;
+	Cluster *cluster;
 
 public:
 	Simulator();
