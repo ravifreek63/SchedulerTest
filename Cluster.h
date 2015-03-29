@@ -26,7 +26,7 @@ private:
 	void sortJobQueue(); // this is the function that sorts the vector by the finish time
 
 public:
-	Cluster();
+	Cluster(int numNodes);
 	virtual ~Cluster();
 	void init(int numNodes);
 	void addResource(int nodeId, int units);

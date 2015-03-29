@@ -9,7 +9,6 @@
 
 Cluster::Cluster(int numNodes) {
 	init(numNodes);
-
 }
 
 Cluster::~Cluster() {
