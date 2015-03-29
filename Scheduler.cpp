@@ -10,7 +10,7 @@
 #include <stdio.h>      /* printf, scanf, puts, NULL */
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
-#include <Simulator.h>
+#include "Simulator.h"
 
 int pickFromRange(int min, int max){
 	int val = (rand() % (max-min+1)) + min;

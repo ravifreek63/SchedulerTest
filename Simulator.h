@@ -8,7 +8,13 @@
 #ifndef SIMULATOR_H_
 #define SIMULATOR_H_
 
+#include "ResourceUnit.h"
+#include "JobRequest.h"
+#include "Scheduler.h"
 #include "Cluster.h"
+#include <fstream>
+#include <string>
+#include <sstream>
 
 class Simulator {
 	static int totalTime;

@@ -6,13 +6,7 @@
  */
 
 #include "Simulator.h"
-#include "ResourceUnit.h"
-#include "JobRequest.h"
-#include "Scheduler.h"
-#include "Cluster.h"
-#include <fstream>
-#include <string>
-#include <sstream>
+
 
 int toInt(string numStr){
 	stringstream ss;
