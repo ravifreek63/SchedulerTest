@@ -52,6 +52,7 @@ void Scheduler::runDispatcher(){
 		resourceDispatchRequestsLock.lock();
 		for(int id=0; id<resourceDispatchRequests.size(); id++){
 			curr = resourceDispatchRequests.at(id);
+			cout << "rt = " << curr.getReleaseTime() << ", ct ="  << getLogicalTime() << endl;
 			if(curr.getReleaseTime()<=getLogicalTime()){
 				cluster->addResource(curr.getNodeId(), curr.getUnits());
 			} else {
