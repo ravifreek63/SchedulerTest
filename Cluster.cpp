@@ -23,6 +23,7 @@ void Cluster::init(int n, int r){
 }
 
 void Cluster::addResource(int nodeId, int units){
+	cout << "adding " << nodeId << ", units " << units << endl;
 	nodeResMutex.lock();
 	nodeResUnits[nodeId] = nodeResUnits[nodeId] + units;
 	nodeResMutex.unlock();
