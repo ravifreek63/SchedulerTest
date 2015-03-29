@@ -72,7 +72,7 @@ void Scheduler::runScheduler(){
 	while(true){
 		if(getLogicalTime()>Simulator::getTotalTime()) break;
 		std::vector<JobRequest> jobReq = cluster->getNextKJobs(k);
-		for(int id=0; id<k; id++){
+		for(int id=0; id<jobReq.size(); id++){
 			pendingJobRequests.push_back(jobReq.at(id));
 		}
 		for(int id=0; id<pendingJobRequests.size(); id++){
@@ -100,7 +100,7 @@ void Scheduler::createExampleJobs(){
 	int steps[] = {7, 1, 1, 7};
 	vector<JobRequest> jobRequest;
 	for(int id=0; id<4; id++){
-		jobRequest.push_back(JobRequest(0, steps[id], id+1, res[id]));
+		jobRequest.push_back(JobRequest(0, res[id], id+1, steps[id]));
 	}
 	  cluster->pushJobs(jobRequest);
 }
