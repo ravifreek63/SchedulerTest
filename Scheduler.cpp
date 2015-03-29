@@ -102,10 +102,10 @@ Scheduler::Scheduler(Cluster *c) {
 	maxSteps = 5;
 	jobsPerSecond = 2;
 
-	std::thread timeClock(runTimeClock);
-	std::thread schedulerThread(runScheduler);
-	std::thread dispatcherThread(runDispatcher);
-	std::thread jobCreator(runJobCreator);
+	std::thread timeClock(runTimeClock, this);
+	std::thread schedulerThread(runScheduler, this);
+	std::thread dispatcherThread(runDispatcher, this);
+	std::thread jobCreator(runJobCreator, this);
 
 	timeClock.join();
 	schedulerThread.join();
