@@ -106,7 +106,7 @@ void Scheduler::runScheduler(){
 }
 
 void Scheduler::createExampleJobs(){
-	int res[] = {7, 7, 7, 7};
+	int res[] = {7, 1, 1, 7};
 	int steps[] = {7, 1, 1, 7};
 	vector<JobRequest> jobRequest;
 	for(int id=0; id<4; id++){
