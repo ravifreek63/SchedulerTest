@@ -18,7 +18,7 @@ Cluster::~Cluster() {
 void Cluster::init(int nNodes){
 	numberNodes = nNodes;
 	for(int id=1; id<=numberNodes; id++){
-		nodeResUnits[id] = 0;
+		nodeResUnits[id] = 7;
 	}
 }
 
