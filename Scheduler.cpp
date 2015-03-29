@@ -52,7 +52,6 @@ void Scheduler::runDispatcher(){
 		resourceDispatchRequestsLock.lock();
 		for(int id=0; id<resourceDispatchRequests.size(); id++){
 			curr = resourceDispatchRequests.at(id);
-			cout << "rt = " << curr.getReleaseTime() << ", ct ="  << getLogicalTime() << endl;
 			if(curr.getReleaseTime()<=getLogicalTime()){
 				cluster->addResource(curr.getNodeId(), curr.getUnits());
 			} else {
@@ -87,6 +86,7 @@ void Scheduler::runScheduler(){
 				//cout << "Request not satisfied, id = " << curr.getJobId() << endl;
 			} else {
 				// add resource to release thread
+				waitTime = waitTime + getLogicalTime() - curr.getTime();
 				dispatchedRequests.push_back(curr);
 				{
 					cout << "Dispatching request , id = " << curr.getJobId()  << ", units required = " << curr.getUnits() <<
@@ -106,8 +106,8 @@ void Scheduler::runScheduler(){
 }
 
 void Scheduler::createExampleJobs(){
-	int res[] = {7, 1, 1, 7};
-	int steps[] = {7, 1, 1, 7};
+	int res[] = {7, 7, 1, 1};
+	int steps[] = {7, 7, 1, 1};
 	vector<JobRequest> jobRequest;
 	for(int id=0; id<4; id++){
 		jobRequest.push_back(JobRequest(0, res[id], id+1, steps[id]));
@@ -123,6 +123,7 @@ Scheduler::Scheduler(Cluster *c) {
 	minSteps = 1;
 	maxSteps = 5;
 	jobsPerSecond = 2;
+	waitTime = 0;
 
 	createExampleJobs();
 	std::thread timeClock(&Scheduler::runTimeClock, this);
@@ -134,6 +135,7 @@ Scheduler::Scheduler(Cluster *c) {
 	schedulerThread.join();
 	dispatcherThread.join();
 	//jobCreator.join();
+	cout << "Cumulative Waiting Time = " << waitTime << endl;
 }
 
 Scheduler::~Scheduler() {

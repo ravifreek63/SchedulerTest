@@ -30,6 +30,7 @@ class Scheduler {
 	int minSteps;
 	int maxSteps;
 	int jobsPerSecond;
+	int waitTime;
 
 public:
 	Scheduler(Cluster *c);
