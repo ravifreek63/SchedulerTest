@@ -83,7 +83,10 @@ void Scheduler::runScheduler(){
 			} else {
 				// add resource to release thread
 				dispatchedRequests.push_back(curr);
-				cout << "Dispatching request , id = " << curr.getJobId() << endl;
+				{
+					cout << "Dispatching request , id = " << curr.getJobId()  << ", units required = " << curr.getUnits() <<
+							", at time = " << getLogicalTime()  << endl;
+				}
 				resourceDispatchRequests.push_back(ResourceUnit(nodeId, curr.getUnits(), curr.getFinishTime()));
 			}
 		}
