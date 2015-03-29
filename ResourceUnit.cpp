@@ -13,6 +13,9 @@ ResourceUnit::ResourceUnit(int n, int u, int t) {
 	units = u;
 	releaseTime = t;
 }
+ResourceUnit::ResourceUnit(){
+
+}
 
 ResourceUnit::~ResourceUnit() {
 	// TODO Auto-generated destructor stub

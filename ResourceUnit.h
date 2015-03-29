@@ -16,6 +16,7 @@ private:
 
 public:
 	ResourceUnit(int n, int u, int t);
+	ResourceUnit();
 	virtual ~ResourceUnit();
 	int getReleaseTime() { return releaseTime; }
 	int getNodeId() { return nodeId; }

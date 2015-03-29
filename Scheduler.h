@@ -9,6 +9,7 @@
 #define SCHEDULER_H_
 
 #include "JobRequest.h"
+#include "ResourceUnit.h"
 #include <thread>
 #include <vector>
 #include "Cluster.h"
