@@ -89,8 +89,8 @@ void Scheduler::runScheduler(){
 				waitTime = waitTime + getLogicalTime() - curr.getTime();
 				dispatchedRequests.push_back(curr);
 				{
-					cout << "Dispatching request , id = " << curr.getJobId()  << ", units required = " << curr.getUnits() <<
-							", at time = " << getLogicalTime()  << endl;
+					cout << "Dispatching request , Job id = " << curr.getJobId()  << ", units required = " << curr.getUnits() <<
+							", at time = " << getLogicalTime() << ", node Id = "  << nodeId << endl;
 				}
 				resourceDispatchRequestsLock.lock();
 				resourceDispatchRequests.push_back(ResourceUnit(nodeId, curr.getUnits(), getLogicalTime()+curr.getSteps()));
