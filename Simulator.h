@@ -8,6 +8,8 @@
 #ifndef SIMULATOR_H_
 #define SIMULATOR_H_
 
+#include "Cluster.h"
+
 class Simulator {
 	static int totalTime;
 	int numNodes;
