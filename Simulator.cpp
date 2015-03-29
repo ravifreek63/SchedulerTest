@@ -21,7 +21,7 @@ int toInt(string numStr){
 
 Simulator::Simulator() {
 	readFile();
-	cluster = new Cluster();
+	cluster = new Cluster(numNodes, maxResources);
 }
 
 Simulator::~Simulator() {

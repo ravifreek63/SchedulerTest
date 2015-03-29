@@ -26,9 +26,9 @@ private:
 	void sortJobQueue(); // this is the function that sorts the vector by the finish time
 
 public:
-	Cluster();
+	Cluster(int, int);
 	virtual ~Cluster();
-	void init();
+	void init(int, int);
 	void addResource(int nodeId, int units);
 	void removeResource(int nodeId, int units);
 	std::vector<JobRequest> getNextKJobs(int k);
