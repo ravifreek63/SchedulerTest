@@ -123,7 +123,7 @@ Scheduler::Scheduler(Cluster *c) {
 	timeClock.join();
 	schedulerThread.join();
 	dispatcherThread.join();
-	jobCreator.join();
+	//jobCreator.join();
 }
 
 Scheduler::~Scheduler() {
