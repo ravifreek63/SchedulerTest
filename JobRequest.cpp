@@ -14,6 +14,10 @@ JobRequest::JobRequest(int t, int s, int j, int u) {
 	units = u;
 }
 
+JobRequest::JobRequest(){
+
+}
+
 JobRequest::~JobRequest() {
 	// TODO Auto-generated destructor stub
 }

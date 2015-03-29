@@ -17,6 +17,7 @@ private:
 
 public:
 	JobRequest(int time, int steps, int jobId, int units);
+	JobRequest();
 	virtual ~JobRequest();
 	int getFinishTime() { return (time+steps); }
 	int getUnits()  { return units; }
