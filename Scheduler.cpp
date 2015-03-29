@@ -80,6 +80,7 @@ void Scheduler::runScheduler(){
 			nodeId = cluster->getResource(curr.getUnits());
 			if(nodeId==-1){ // request is not satisfied, job pushed to temporary vector
 				lPendingJobRequests.push_back(curr);
+				cout << "Request not satisfied, id = " << curr.getJobId() << endl;
 			} else {
 				// add resource to release thread
 				dispatchedRequests.push_back(curr);

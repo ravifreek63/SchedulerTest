@@ -35,9 +35,11 @@ void Cluster::removeResource(int nodeId, int units){
 }
 
 int Cluster::getResource(int units){
+	cout << "units required " << units << endl;
 	int nodeId = -1;
 	nodeResMutex.lock();
 	for(int id=1; id<=numberNodes; id++){
+		cout << "Id = " << id << ", units=" << nodeResUnits[id] << endl;
 		if(nodeResUnits[id]>=units){
 			nodeResUnits[id]=nodeResUnits[id]-units;
 			nodeId=id;
