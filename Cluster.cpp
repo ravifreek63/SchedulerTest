@@ -7,8 +7,8 @@
 
 #include "Cluster.h"
 
-Cluster::Cluster(int numNodes) {
-	init(numNodes);
+Cluster::Cluster() {
+	init();
 }
 
 Cluster::~Cluster() {

@@ -13,6 +13,7 @@
 #include<vector>
 #include "JobRequest.h"
 #include "algorithm"
+#include "Simulator.h"
 
 using namespace std;
 
