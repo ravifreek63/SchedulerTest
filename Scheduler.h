@@ -14,6 +14,7 @@
 #include <vector>
 #include "Cluster.h"
 #include <iostream>
+#include <mutex>
 using namespace std;
 
 class Scheduler {
@@ -22,6 +23,7 @@ class Scheduler {
 	std::vector<JobRequest> dispatchedRequests;
 	std::vector<JobRequest> pendingJobRequests;
 	std::vector<ResourceUnit> resourceDispatchRequests;
+	std::mutex resourceDispatchRequestsLock;
 	int ticks;
 	int minUnits;
 	int maxUnits;

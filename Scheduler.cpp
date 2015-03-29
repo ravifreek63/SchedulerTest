@@ -49,6 +49,7 @@ void Scheduler::runDispatcher(){
 	ResourceUnit curr;
 	while(true){
 		if(getLogicalTime()>Simulator::getTotalTime()) break;
+		resourceDispatchRequestsLock.lock();
 		for(int id=0; id<resourceDispatchRequests.size(); id++){
 			curr = resourceDispatchRequests.at(id);
 			if(curr.getReleaseTime()<=getLogicalTime()){
@@ -62,6 +63,8 @@ void Scheduler::runDispatcher(){
 			resourceDispatchRequests.push_back(tempResourceDispatchRequests.at(id));
 		}
 		tempResourceDispatchRequests.clear();
+		resourceDispatchRequestsLock.unlock();
+		sleep(1);
 	}
 }
 
@@ -88,7 +91,9 @@ void Scheduler::runScheduler(){
 					cout << "Dispatching request , id = " << curr.getJobId()  << ", units required = " << curr.getUnits() <<
 							", at time = " << getLogicalTime()  << endl;
 				}
+				resourceDispatchRequestsLock.lock();
 				resourceDispatchRequests.push_back(ResourceUnit(nodeId, curr.getUnits(), getLogicalTime()+curr.getSteps()));
+				resourceDispatchRequestsLock.unlock();
 			}
 		}
 		pendingJobRequests.clear();
