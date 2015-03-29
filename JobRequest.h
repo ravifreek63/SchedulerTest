@@ -23,6 +23,7 @@ public:
 	int getUnits()  { return units; }
 	int getJobId() { return jobId; }
 	int getSteps() { return steps; }
+	int getTime() { return time; }
 };
 
 #endif /* JOBREQUEST_H_ */
