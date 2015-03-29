@@ -39,6 +39,7 @@ int Cluster::getResource(int units){
 	nodeResMutex.lock();
 	for(int id=1; id<=numberNodes; id++){
 		if(nodeResUnits[id]>=units){
+			nodeResUnits[id]=nodeResUnits[id]-units;
 			nodeId=id;
 			break;
 		}
