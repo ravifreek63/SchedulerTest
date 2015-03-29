@@ -18,7 +18,8 @@
 
 class Simulator {
 	static int totalTime;
-	int numNodes;
+	static int maxResources;
+	static int numNodes;
 	Cluster *cluster;
 
 public:
@@ -29,6 +30,8 @@ public:
 	int getTicks();
 	void readFile();
 	static int getTotalTime() { return totalTime; }
+	static int getMaxResources() { return maxResources; }
+	static int getNumberNodes() { return numNodes; }
 };
 
 #endif /* SIMULATOR_H_ */

@@ -8,6 +8,8 @@
 #include "Simulator.h"
 
 int Simulator::totalTime=0;
+int Simulator::maxResources=0;
+int Simulator::numNodes=0;
 
 int toInt(string numStr){
 	stringstream ss;
@@ -19,7 +21,7 @@ int toInt(string numStr){
 
 Simulator::Simulator() {
 	readFile();
-	cluster = new Cluster(numNodes);
+	cluster = new Cluster();
 }
 
 Simulator::~Simulator() {
@@ -39,6 +41,9 @@ void Simulator::readFile(){
 				  break;
 			  case 2:
 				  numNodes=toInt(line);
+				  break;
+			  case 3:
+				  maxResources=toInt(line);
 				  break;
 			  }
 		  }

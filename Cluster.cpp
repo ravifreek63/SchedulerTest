@@ -15,10 +15,10 @@ Cluster::~Cluster() {
 	// TODO Auto-generated destructor stub
 }
 
-void Cluster::init(int nNodes){
-	numberNodes = nNodes;
+void Cluster::init(){
+	numberNodes = Simulator::getNumberNodes();
 	for(int id=1; id<=numberNodes; id++){
-		nodeResUnits[id] = 7;
+		nodeResUnits[id] = Simulator::getMaxResources();
 	}
 }
 
