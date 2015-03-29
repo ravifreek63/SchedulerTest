@@ -14,7 +14,7 @@
 #include "Cluster.h"
 
 class Scheduler {
-	Cluster cluster;
+	Cluster *cluster;
 	int k;
 	std::vector<JobRequest> pendingJobRequests;
 	std::vector<ResourceUnit> resourceDispatchRequests;
@@ -26,7 +26,7 @@ class Scheduler {
 	int jobsPerSecond;
 
 public:
-	Scheduler(Cluster c);
+	Scheduler(Cluster *c);
 	void runScheduler();
 	void runDispatcher();
 	void runTimeClock();

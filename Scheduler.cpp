@@ -29,7 +29,7 @@ void Scheduler::runJobCreator(){
 			jobRequest.push_back(JobRequest(getLogicalTime(), pickFromRange(minSteps, maxSteps),
 				jobId, pickFromRange(minUnits, maxUnits)));
 		}
-		cluster.pushJobs(jobRequest);
+		cluster->pushJobs(jobRequest);
 		jobRequest.clear();
 		sleep(1);
 	}
@@ -52,7 +52,7 @@ void Scheduler::runDispatcher(){
 		for(int id=0; id<resourceDispatchRequests.size(); id++){
 			curr = resourceDispatchRequests.at(id);
 			if(curr.getReleaseTime()>=getLogicalTime()){
-				cluster.addResource(curr.getNodeId(), curr.getUnits());
+				cluster->addResource(curr.getNodeId(), curr.getUnits());
 			} else {
 				tempResourceDispatchRequests.push_back(curr);
 			}
@@ -71,13 +71,13 @@ void Scheduler::runScheduler(){
 	std::vector<JobRequest> lPendingJobRequests;
 	while(true){
 		if(getLogicalTime()>Simulator::getTotalTime()) break;
-		std::vector<JobRequest> jobReq = cluster.getNextKJobs(k);
+		std::vector<JobRequest> jobReq = cluster->getNextKJobs(k);
 		for(int id=0; id<k; id++){
 			pendingJobRequests.push_back(jobReq.at(id));
 		}
 		for(int id=0; id<pendingJobRequests.size(); id++){
 			curr=pendingJobRequests.at(id);
-			nodeId = cluster.getResource(curr.getUnits());
+			nodeId = cluster->getResource(curr.getUnits());
 			if(nodeId==-1){ // request is not satisfied, job pushed to temporary vector
 				lPendingJobRequests.push_back(curr);
 			} else {
@@ -93,7 +93,7 @@ void Scheduler::runScheduler(){
 	}
 }
 
-Scheduler::Scheduler(Cluster c) {
+Scheduler::Scheduler(Cluster *c) {
 	cluster = c;
 	k=1; // number of jobs picked by the scheduler at a time
 	minUnits = 1;
